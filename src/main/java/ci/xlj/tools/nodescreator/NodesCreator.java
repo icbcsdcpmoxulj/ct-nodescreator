@@ -23,7 +23,7 @@ import ci.xlj.libs.jenkinsvisitor.JenkinsVisitor;
 import ci.xlj.libs.utils.StringUtils;
 
 /**
- * This is a tool used to post information to the API of pi-nodescreator.
+ * This is a tool used to post information to the API of pi-nodescreator plugin.
  * 
  * @author kfzx-xulj
  */
@@ -54,6 +54,8 @@ public class NodesCreator {
 						+ v.getResponseContent());
 			}
 
+		}else{
+			System.err.println("Invalid username or password. Please check and retry.");
 		}
 	}
 }
