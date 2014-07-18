@@ -23,8 +23,9 @@ import ci.xlj.libs.jenkinsvisitor.JenkinsVisitor;
 import ci.xlj.libs.utils.StringUtils;
 
 /**
+ * This is a tool used to post information to the API of pi-nodescreator.
+ * 
  * @author kfzx-xulj
- *
  */
 public class NodesCreator {
 
