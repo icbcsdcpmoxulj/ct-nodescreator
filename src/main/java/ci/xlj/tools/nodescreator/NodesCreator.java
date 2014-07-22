@@ -31,7 +31,7 @@ public class NodesCreator {
 
 	public static void main(String[] args) {
 
-		if (!StringUtils.isValid(args)) {
+		if (!StringUtils.isValid(args) || args.length != 8) {
 			System.out.println("Invalid parameters. Please check and retry.");
 			System.exit(-1);
 		}
@@ -54,8 +54,9 @@ public class NodesCreator {
 						+ v.getResponseContent());
 			}
 
-		}else{
-			System.err.println("Invalid username or password. Please check and retry.");
+		} else {
+			System.err
+					.println("Invalid username or password. Please check and retry.");
 		}
 	}
 }
