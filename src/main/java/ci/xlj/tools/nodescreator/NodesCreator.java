@@ -23,16 +23,18 @@ import ci.xlj.libs.jenkinsvisitor.JenkinsVisitor;
 import ci.xlj.libs.utils.StringUtils;
 
 /**
- * This is a tool used to post information to the API of pi-nodescreator plugin.
+ * This tool is used to create a node on Jenkins Server <br/>
+ * by posting information to the API of pi-nodescreator plugin.
  * 
- * @author kfzx-xulj
+ * @author Xu Lijia
  */
 public class NodesCreator {
 
 	public static void main(String[] args) {
 
 		if (!StringUtils.isValid(args) || args.length != 8) {
-			System.out.println("Invalid parameters. Please check and retry.");
+			System.out.println("Invalid parameters. See usage.");
+			showUsage();
 			System.exit(-1);
 		}
 
@@ -43,7 +45,7 @@ public class NodesCreator {
 			StringBuilder b = new StringBuilder();
 			b.append(args[3]).append(",").append(args[4]).append(",")
 					.append(args[5]).append(",").append(args[6]).append(",")
-					.append(args[7]);
+					.append(args[7].replaceAll(","," "));
 			v.doPost(args[0] + "/plugin/pi-nodescreator/createNode",
 					b.toString());
 
@@ -52,11 +54,19 @@ public class NodesCreator {
 			} else {
 				System.err.println("Error occured. Reasons:\n"
 						+ v.getResponseContent());
+				System.exit(-1);
 			}
 
 		} else {
 			System.err
 					.println("Invalid username or password. Please check and retry.");
 		}
+	}
+	
+	private static void showUsage(){
+		System.out.println("Usage:");
+		System.out.println("java -jar nodescreator.jar <Url> <Username> <Password> <NODE_NAME> <Description> <NODE_HOME> <Executors> <Labels>\n");
+
+		System.out.println("Note: Do use \",\" to separate multiple labels.");
 	}
 }
